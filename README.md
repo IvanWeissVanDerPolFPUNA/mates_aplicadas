@@ -12,5 +12,5 @@ https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe
 
 ## Una vez se tiene python instalado, se ejecuta con el comando:
 ```bash
-  python tp4.py
+  $ python tp4.py
 ```
