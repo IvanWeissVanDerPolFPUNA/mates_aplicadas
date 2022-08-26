@@ -62,11 +62,7 @@ def godel_op(a, b):
 
 
 def lukasiewicz_op(a, b):
-    c = 1-a+b
-    if 1 > c:
-        return 1
-    else:
-        return c
+    return min(1, 1 - a + b)
 
 
 def goguen_op(a, b):
@@ -74,6 +70,14 @@ def goguen_op(a, b):
         return 1
     else:
         return b/a
+    
+def degenerada_op(a, b):
+    if a == 1:
+        return b
+    elif b == 1:
+        return a
+    else:
+        return 0
 
 
 def set_value(mat, A_pos, B_pos, val):
@@ -91,9 +95,22 @@ def Ejercicio2(A, B, GODEL_mat, LUKASIEWICZ_mat, GOGUEN_mat):
 
     A_P_mat = np.array(list(A_P.values()))
 
-    R_GODEL_mat = max_op(A, B, GODEL_mat, A_P_mat)
-    R_LUKASIEWICZ_mat = max_op(A, B, LUKASIEWICZ_mat, A_P_mat)
-    R_GOGUEN_mat = max_op(A, B, GOGUEN_mat, A_P_mat)
+    R_GODEL_mat = max_op_lukasiewicz(A, B, GODEL_mat, A_P_mat)
+    R_LUKASIEWICZ_mat = max_op_lukasiewicz(A, B, LUKASIEWICZ_mat, A_P_mat)
+    R_GOGUEN_mat = max_op_lukasiewicz(A, B, GOGUEN_mat, A_P_mat)
+
+    print("GODEL_mat")
+    print(R_GODEL_mat)
+
+    print("LUKASIEWICZ_mat")
+    print(R_LUKASIEWICZ_mat)
+
+    print("GOGUEN_mat")
+    print(R_GOGUEN_mat)
+
+    R_GODEL_mat = max_op_degenerada(A, B, GODEL_mat, A_P_mat)
+    R_LUKASIEWICZ_mat = max_op_degenerada(A, B, LUKASIEWICZ_mat, A_P_mat)
+    R_GOGUEN_mat = max_op_degenerada(A, B, GOGUEN_mat, A_P_mat)
 
     print("GODEL_mat")
     print(R_GODEL_mat)
@@ -110,7 +127,7 @@ def set_value2(mat, B_pos, val):
     return mat
 
 
-def max_op(A_set, B_set, mat, arr):
+def max_op_old(A_set, B_set, mat, arr):
     A_len = len(A_set)
     B_len = len(B_set)
     # assuming normalized arr as input data
@@ -124,6 +141,32 @@ def max_op(A_set, B_set, mat, arr):
 
             min_list.append(min_val)
         R_mat = set_value2(R_mat, B_pos, max(min_list))
+    return R_mat
+
+def max_op_lukasiewicz(A_set, B_set, mat, arr):
+    A_len = len(A_set)
+    B_len = len(B_set)
+    # assuming normalized arr as input data
+    R_mat = np.array([0]*B_len, dtype=np.dtype(decimal.Decimal)).reshape(B_len)
+    for B_pos in range(B_len):
+        lukasiewicz_list = []
+        for A_pos in range(A_len):
+            lukasiewicz_val = lukasiewicz_op(mat[A_pos][B_pos], arr[A_pos])
+            lukasiewicz_list.append(lukasiewicz_val)
+        R_mat = set_value2(R_mat, B_pos, max(lukasiewicz_list))
+    return R_mat
+
+def max_op_degenerada(A_set, B_set, mat, arr):
+    A_len = len(A_set)
+    B_len = len(B_set)
+    # assuming normalized arr as input data
+    R_mat = np.array([0]*B_len, dtype=np.dtype(decimal.Decimal)).reshape(B_len)
+    for B_pos in range(B_len):
+        degenerada_list = []
+        for A_pos in range(A_len):
+            degenerada_val = degenerada_op(mat[A_pos][B_pos], arr[A_pos])
+            degenerada_list.append(degenerada_val)
+        R_mat = set_value2(R_mat, B_pos, max(degenerada_list))
     return R_mat
 
 
