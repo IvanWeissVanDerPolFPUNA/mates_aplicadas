@@ -16,6 +16,7 @@ A = {"1": 0.1, "2": 0.4, "3": 1}
 B = {"a": 0.3, "b": 1}
 '''
 
+
 def Ejercico1(A_set, B_set):
 
     print("\n###################################")
@@ -33,7 +34,7 @@ def Ejercico1(A_set, B_set):
     print("B(x) = ", end='')
     for key, value in B_set.items():
         buffer = buffer + f'{value}/{key} + '
-    print(buffer.rstrip('+ '),'\n')
+    print(buffer.rstrip('+ '), '\n')
 
     A_len = len(A_set)
     B_len = len(B_set)
@@ -55,7 +56,7 @@ def Ejercico1(A_set, B_set):
     buffer = ''
     print('Resultados del ejercicio 1')
     print('Godel')
-    print('R(x,y) = ',end='')
+    print('R(x,y) = ', end='')
     for A_key, A_pos in zip(A_set, range(A_len)):
         for B_key, B_pos in zip(B_set, range(B_len)):
             buffer = buffer + f'{GODEL_mat[A_pos][B_pos]}/({A_key},{B_key}) + '
@@ -65,7 +66,7 @@ def Ejercico1(A_set, B_set):
 
     buffer = ''
     print('\nLukasiewicz')
-    print('R(x,y) = ',end='')
+    print('R(x,y) = ', end='')
     for A_key, A_pos in zip(A_set, range(A_len)):
         for B_key, B_pos in zip(B_set, range(B_len)):
             buffer = buffer + f'{GODEL_mat[A_pos][B_pos]}/({A_key},{B_key}) + '
@@ -75,7 +76,7 @@ def Ejercico1(A_set, B_set):
 
     buffer = ''
     print('\nGoguen')
-    print('R(x,y) = ',end='')
+    print('R(x,y) = ', end='')
     for A_key, A_pos in zip(A_set, range(A_len)):
         for B_key, B_pos in zip(B_set, range(B_len)):
             buffer = buffer + f'{GODEL_mat[A_pos][B_pos]}/({A_key},{B_key}) + '
@@ -102,7 +103,8 @@ def goguen_op(a, b):
         return 1
     else:
         return b/a
-    
+
+
 def degenerada_op(a, b):
     if a == 1:
         return b
@@ -130,7 +132,7 @@ def Ejercicio2(A, B, GODEL_mat, LUKASIEWICZ_mat, GOGUEN_mat):
     buffer = ''
     for key, value in A_P.items():
         buffer = buffer + f'{value}/{key} + '
-    print(buffer.rstrip('+ '),'\n')
+    print(buffer.rstrip('+ '), '\n')
 
     A_P_mat = np.array(list(A_P.values()))
 
@@ -141,25 +143,25 @@ def Ejercicio2(A, B, GODEL_mat, LUKASIEWICZ_mat, GOGUEN_mat):
     buffer = ''
     print('Resultados del ejercicio 2\n')
     print('T-Norm: interseccion drastica\n')
-    print('R(x,y) obtenido con Godel: ',end='')
-    print("B'(y) = ",end='')
+    print('R(x,y) obtenido con Godel: ', end='')
+    print("B'(y) = ", end='')
     for B_key, B_pos in zip(B, range(len(B))):
         buffer = buffer + f'{R_GODEL_mat[B_pos]}/{B_key} + '
     print(buffer.rstrip('+ '))
 
     buffer = ''
-    print('R(x,y) obtenido con Lukasiwewicz: ',end='')
-    print("B'(y) = ",end='')
+    print('R(x,y) obtenido con Lukasiwewicz: ', end='')
+    print("B'(y) = ", end='')
     for B_key, B_pos in zip(B, range(len(B))):
         buffer = buffer + f'{R_LUKASIEWICZ_mat[B_pos]}/{B_key} + '
     print(buffer.rstrip('+ '))
 
     buffer = ''
-    print('R(x,y) obtenido con Goguen: ',end='')
-    print("B'(y) = ",end='')
+    print('R(x,y) obtenido con Goguen: ', end='')
+    print("B'(y) = ", end='')
     for B_key, B_pos in zip(B, range(len(B))):
         buffer = buffer + f'{R_GOGUEN_mat[B_pos]}/{B_key} + '
-    print(buffer.rstrip('+ '),'\n')
+    print(buffer.rstrip('+ '), '\n')
 
     R_GODEL_mat = max_op_degenerada(A, B, GODEL_mat, A_P_mat)
     R_LUKASIEWICZ_mat = max_op_degenerada(A, B, LUKASIEWICZ_mat, A_P_mat)
@@ -167,22 +169,22 @@ def Ejercicio2(A, B, GODEL_mat, LUKASIEWICZ_mat, GOGUEN_mat):
 
     buffer = ''
     print('T-Norm: Diferencia limitada (Lukasiewicz)\n')
-    print('R(x,y) obtenido con Godel: ',end='')
-    print("B'(y) = ",end='')
+    print('R(x,y) obtenido con Godel: ', end='')
+    print("B'(y) = ", end='')
     for B_key, B_pos in zip(B, range(len(B))):
         buffer = buffer + f'{R_GODEL_mat[B_pos]}/{B_key} + '
     print(buffer.rstrip('+ '))
 
     buffer = ''
-    print('R(x,y) obtenido con Lukasiwewicz: ',end='')
-    print("B'(y) = ",end='')
+    print('R(x,y) obtenido con Lukasiwewicz: ', end='')
+    print("B'(y) = ", end='')
     for B_key, B_pos in zip(B, range(len(B))):
         buffer = buffer + f'{R_LUKASIEWICZ_mat[B_pos]}/{B_key} + '
     print(buffer.rstrip('+ '))
 
     buffer = ''
-    print('R(x,y) obtenido con Goguen: ',end='')
-    print("B'(y) = ",end='')
+    print('R(x,y) obtenido con Goguen: ', end='')
+    print("B'(y) = ", end='')
     for B_key, B_pos in zip(B, range(len(B))):
         buffer = buffer + f'{R_GOGUEN_mat[B_pos]}/{B_key} + '
     print(buffer.rstrip('+ '),)
@@ -209,6 +211,7 @@ def max_op_old(A_set, B_set, mat, arr):
         R_mat = set_value2(R_mat, B_pos, max(min_list))
     return R_mat
 
+
 def max_op_lukasiewicz(A_set, B_set, mat, arr):
     A_len = len(A_set)
     B_len = len(B_set)
@@ -221,6 +224,7 @@ def max_op_lukasiewicz(A_set, B_set, mat, arr):
             lukasiewicz_list.append(lukasiewicz_val)
         R_mat = set_value2(R_mat, B_pos, max(lukasiewicz_list))
     return R_mat
+
 
 def max_op_degenerada(A_set, B_set, mat, arr):
     A_len = len(A_set)
