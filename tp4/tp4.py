@@ -1,6 +1,7 @@
 import decimal
 import numpy as np
 
+
 # Datos del ejercicio
 X = [1, 2, 3, 4, 5]
 Y = ["a", "b", "c", "d", "e", "f"]
@@ -16,9 +17,24 @@ B = {"a": 0.3, "b": 1}
 '''
 
 def Ejercico1(A_set, B_set):
-    print("###################################")
+
+    print("\n###################################")
     print("# Ejercicio 1                     #")
     print("###################################")
+
+    print("\nDatos del ejercicio 1")
+    print("A(x) = ", end='')
+    buffer = ''
+    for key, value in A_set.items():
+        buffer = buffer + f'{value}/{key} + '
+    print(buffer.rstrip('+ '))
+
+    buffer = ''
+    print("B(x) = ", end='')
+    for key, value in B_set.items():
+        buffer = buffer + f'{value}/{key} + '
+    print(buffer.rstrip('+ '),'\n')
+
     A_len = len(A_set)
     B_len = len(B_set)
 
@@ -36,21 +52,37 @@ def Ejercico1(A_set, B_set):
             LUKASIEWICZ_mat = set_value(LUKASIEWICZ_mat, A_pos, B_pos, LUKASIEWICZ_value)
             GOGUEN_mat = set_value(GOGUEN_mat, A_pos, B_pos, GOGUEN_value)
 
-            print("A_key = " + A_key + " A_Value = " + str(A_set[A_key]))
-            print("B_key = " + B_key + " B_Value = " + str(B_set[B_key]))
-            print("GODEL_value = " + str(GODEL_value))
-            print("LUKASIEWICZ_value = " + str(LUKASIEWICZ_value))
-            print("GOGUEN_value = " + str(GOGUEN_value))
-            print("###################################")
-
-    print("GODEL_mat")
+    buffer = ''
+    print('Resultados del ejercicio 1')
+    print('Godel')
+    print('R(x,y) = ',end='')
+    for A_key, A_pos in zip(A_set, range(A_len)):
+        for B_key, B_pos in zip(B_set, range(B_len)):
+            buffer = buffer + f'{GODEL_mat[A_pos][B_pos]}/({A_key},{B_key}) + '
+    print(buffer.rstrip('+ '))
+    print("\nEn forma matricial:")
     print(GODEL_mat)
 
-    print("LUKASIEWICZ_mat")
+    buffer = ''
+    print('\nLukasiewicz')
+    print('R(x,y) = ',end='')
+    for A_key, A_pos in zip(A_set, range(A_len)):
+        for B_key, B_pos in zip(B_set, range(B_len)):
+            buffer = buffer + f'{GODEL_mat[A_pos][B_pos]}/({A_key},{B_key}) + '
+    print(buffer.rstrip('+ '))
+    print("\nEn forma matricial:")
     print(LUKASIEWICZ_mat)
 
-    print("GOGUEN_mat")
+    buffer = ''
+    print('\nGoguen')
+    print('R(x,y) = ',end='')
+    for A_key, A_pos in zip(A_set, range(A_len)):
+        for B_key, B_pos in zip(B_set, range(B_len)):
+            buffer = buffer + f'{GODEL_mat[A_pos][B_pos]}/({A_key},{B_key}) + '
+    print(buffer.rstrip('+ '))
+    print("\nEn forma matricial:")
     print(GOGUEN_mat)
+
     return GODEL_mat, LUKASIEWICZ_mat, GOGUEN_mat
 
 
@@ -86,12 +118,19 @@ def set_value(mat, A_pos, B_pos, val):
 
 
 def Ejercicio2(A, B, GODEL_mat, LUKASIEWICZ_mat, GOGUEN_mat):
-    print("###################################")
+    print("\n\n###################################")
     print("# Ejercicio 2                     #")
     print("###################################")
     A_P = {"1": 0.5, "2": 0.7, "3": 0.9, "4": 0.5, "5": 0.4}
     # ejercicio de ejemplo
-    #A_P = {"1": 0.5, "2": 1, "3": 0.9}
+    # A_P = {"1": 0.5, "2": 1, "3": 0.9}
+
+    print("\nDatos del ejercicio 2")
+    print("A(x) = ", end='')
+    buffer = ''
+    for key, value in A_P.items():
+        buffer = buffer + f'{value}/{key} + '
+    print(buffer.rstrip('+ '),'\n')
 
     A_P_mat = np.array(list(A_P.values()))
 
@@ -99,27 +138,54 @@ def Ejercicio2(A, B, GODEL_mat, LUKASIEWICZ_mat, GOGUEN_mat):
     R_LUKASIEWICZ_mat = max_op_lukasiewicz(A, B, LUKASIEWICZ_mat, A_P_mat)
     R_GOGUEN_mat = max_op_lukasiewicz(A, B, GOGUEN_mat, A_P_mat)
 
-    print("GODEL_mat")
-    print(R_GODEL_mat)
+    buffer = ''
+    print('Resultados del ejercicio 2\n')
+    print('T-Norm: interseccion drastica\n')
+    print('R(x,y) obtenido con Godel: ',end='')
+    print("B'(y) = ",end='')
+    for B_key, B_pos in zip(B, range(len(B))):
+        buffer = buffer + f'{R_GODEL_mat[B_pos]}/{B_key} + '
+    print(buffer.rstrip('+ '))
 
-    print("LUKASIEWICZ_mat")
-    print(R_LUKASIEWICZ_mat)
+    buffer = ''
+    print('R(x,y) obtenido con Lukasiwewicz: ',end='')
+    print("B'(y) = ",end='')
+    for B_key, B_pos in zip(B, range(len(B))):
+        buffer = buffer + f'{R_LUKASIEWICZ_mat[B_pos]}/{B_key} + '
+    print(buffer.rstrip('+ '))
 
-    print("GOGUEN_mat")
-    print(R_GOGUEN_mat)
+    buffer = ''
+    print('R(x,y) obtenido con Goguen: ',end='')
+    print("B'(y) = ",end='')
+    for B_key, B_pos in zip(B, range(len(B))):
+        buffer = buffer + f'{R_GOGUEN_mat[B_pos]}/{B_key} + '
+    print(buffer.rstrip('+ '),'\n')
 
     R_GODEL_mat = max_op_degenerada(A, B, GODEL_mat, A_P_mat)
     R_LUKASIEWICZ_mat = max_op_degenerada(A, B, LUKASIEWICZ_mat, A_P_mat)
     R_GOGUEN_mat = max_op_degenerada(A, B, GOGUEN_mat, A_P_mat)
 
-    print("GODEL_mat")
-    print(R_GODEL_mat)
+    buffer = ''
+    print('T-Norm: Diferencia limitada (Lukasiewicz)\n')
+    print('R(x,y) obtenido con Godel: ',end='')
+    print("B'(y) = ",end='')
+    for B_key, B_pos in zip(B, range(len(B))):
+        buffer = buffer + f'{R_GODEL_mat[B_pos]}/{B_key} + '
+    print(buffer.rstrip('+ '))
 
-    print("LUKASIEWICZ_mat")
-    print(R_LUKASIEWICZ_mat)
+    buffer = ''
+    print('R(x,y) obtenido con Lukasiwewicz: ',end='')
+    print("B'(y) = ",end='')
+    for B_key, B_pos in zip(B, range(len(B))):
+        buffer = buffer + f'{R_LUKASIEWICZ_mat[B_pos]}/{B_key} + '
+    print(buffer.rstrip('+ '))
 
-    print("GOGUEN_mat")
-    print(R_GOGUEN_mat)
+    buffer = ''
+    print('R(x,y) obtenido con Goguen: ',end='')
+    print("B'(y) = ",end='')
+    for B_key, B_pos in zip(B, range(len(B))):
+        buffer = buffer + f'{R_GOGUEN_mat[B_pos]}/{B_key} + '
+    print(buffer.rstrip('+ '),)
 
 
 def set_value2(mat, B_pos, val):
