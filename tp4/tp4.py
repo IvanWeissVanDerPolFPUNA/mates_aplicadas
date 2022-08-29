@@ -244,7 +244,7 @@ def max_op_degenerada(A_set, B_set, mat, arr):
 ########################
 
 def main():
-    np.set_printoptions(formatter={'float': lambda x: (f'{int(x)}' if round(x, 5) % 1 == 0 else f'{round(x,3)}').center(5, ' ')})
+    np.set_printoptions(formatter={'all':lambda x:f'{(round(x,3)if x%1 else int(x))}'.center(5)})
     GODEL_mat, LUKASIEWICZ_mat, GOGUEN_mat = Ejercico1(A, B)
     Ejercicio2(A, B, GODEL_mat, LUKASIEWICZ_mat, GOGUEN_mat)
 
