@@ -96,6 +96,9 @@ def godel_op(a, b):
 def lukasiewicz_op(a, b):
     return min(1, 1 - a + b)
 
+def lukasiewicz_op1(a, b):
+    return max(0, a + b - 1)
+
 
 def goguen_op(a, b):
     if a <= b:
@@ -219,7 +222,7 @@ def max_op_lukasiewicz(A_set, B_set, mat, arr):
     for B_pos in range(B_len):
         lukasiewicz_list = []
         for A_pos in range(A_len):
-            lukasiewicz_val = lukasiewicz_op(mat[A_pos][B_pos], arr[A_pos])
+            lukasiewicz_val = lukasiewicz_op1(mat[A_pos][B_pos], arr[A_pos])
             lukasiewicz_list.append(lukasiewicz_val)
         R_mat = set_value2(R_mat, B_pos, max(lukasiewicz_list))
     return R_mat
