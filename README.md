@@ -12,10 +12,15 @@ https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe
 
 ### Debian based-OS (Ubuntu, Debian, etc)
 ```
-  # apt install python3
+  # apt install python3 pip
 ```
 
-## Una vez se tiene python instalado, se ejecuta con el comando:
+## Instalar numpy con pip
+```bash
+  $ pip install numpy
+```
+
+## Una vez se tiene python y numpy instalado, se ejecuta con el comando:
 ```bash
   $ python tp4.py
 ```
