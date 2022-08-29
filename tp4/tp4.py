@@ -1,4 +1,3 @@
-import decimal
 import numpy as np
 
 
@@ -16,6 +15,7 @@ A = {"1": 0.1, "2": 0.4, "3": 1}
 B = {"a": 0.3, "b": 1}
 '''
 
+np.set_printoptions(precision=3)
 
 def Ejercico1(A_set, B_set):
 
@@ -39,9 +39,9 @@ def Ejercico1(A_set, B_set):
     A_len = len(A_set)
     B_len = len(B_set)
 
-    GODEL_mat = np.array([0]*A_len*B_len, dtype=np.dtype(decimal.Decimal)).reshape(A_len, B_len)
-    LUKASIEWICZ_mat = np.array([0]*A_len*B_len).reshape(A_len, B_len)
-    GOGUEN_mat = np.array([0]*A_len*B_len).reshape(A_len, B_len)
+    GODEL_mat = np.array([0]*A_len*B_len, dtype=np.dtype(float)).reshape(A_len, B_len)
+    LUKASIEWICZ_mat = np.array([0]*A_len*B_len, dtype=np.dtype(float)).reshape(A_len, B_len)
+    GOGUEN_mat = np.array([0]*A_len*B_len, dtype=np.dtype(float)).reshape(A_len, B_len)
 
     for A_key, A_pos in zip(A_set, range(A_len)):
         for B_key, B_pos in zip(B_set, range(B_len)):
@@ -59,7 +59,7 @@ def Ejercico1(A_set, B_set):
     print('R(x,y) = ', end='')
     for A_key, A_pos in zip(A_set, range(A_len)):
         for B_key, B_pos in zip(B_set, range(B_len)):
-            buffer = buffer + f'{GODEL_mat[A_pos][B_pos]}/({A_key},{B_key}) + '
+            buffer = buffer + f'{round(GODEL_mat[A_pos][B_pos])}/({A_key},{B_key}) + '
     print(buffer.rstrip('+ '))
     print("\nEn forma matricial:")
     print(GODEL_mat)
@@ -69,7 +69,7 @@ def Ejercico1(A_set, B_set):
     print('R(x,y) = ', end='')
     for A_key, A_pos in zip(A_set, range(A_len)):
         for B_key, B_pos in zip(B_set, range(B_len)):
-            buffer = buffer + f'{GODEL_mat[A_pos][B_pos]}/({A_key},{B_key}) + '
+            buffer = buffer + f'{round(LUKASIEWICZ_mat[A_pos][B_pos], 2)}/({A_key},{B_key}) + '
     print(buffer.rstrip('+ '))
     print("\nEn forma matricial:")
     print(LUKASIEWICZ_mat)
@@ -79,7 +79,7 @@ def Ejercico1(A_set, B_set):
     print('R(x,y) = ', end='')
     for A_key, A_pos in zip(A_set, range(A_len)):
         for B_key, B_pos in zip(B_set, range(B_len)):
-            buffer = buffer + f'{GODEL_mat[A_pos][B_pos]}/({A_key},{B_key}) + '
+            buffer = buffer + f'{round(GOGUEN_mat[A_pos][B_pos],2)}/({A_key},{B_key}) + '
     print(buffer.rstrip('+ '))
     print("\nEn forma matricial:")
     print(GOGUEN_mat)
@@ -199,7 +199,7 @@ def max_op_old(A_set, B_set, mat, arr):
     A_len = len(A_set)
     B_len = len(B_set)
     # assuming normalized arr as input data
-    R_mat = np.array([0]*B_len, dtype=np.dtype(decimal.Decimal)).reshape(B_len)
+    R_mat = np.array([0]*B_len, dtype=np.dtype(float)).reshape(B_len)
     for B_pos in range(B_len):
         min_list = []
         for A_pos in range(A_len):
@@ -216,7 +216,7 @@ def max_op_lukasiewicz(A_set, B_set, mat, arr):
     A_len = len(A_set)
     B_len = len(B_set)
     # assuming normalized arr as input data
-    R_mat = np.array([0]*B_len, dtype=np.dtype(decimal.Decimal)).reshape(B_len)
+    R_mat = np.array([0]*B_len, dtype=np.dtype(float)).reshape(B_len)
     for B_pos in range(B_len):
         lukasiewicz_list = []
         for A_pos in range(A_len):
@@ -230,7 +230,7 @@ def max_op_degenerada(A_set, B_set, mat, arr):
     A_len = len(A_set)
     B_len = len(B_set)
     # assuming normalized arr as input data
-    R_mat = np.array([0]*B_len, dtype=np.dtype(decimal.Decimal)).reshape(B_len)
+    R_mat = np.array([0]*B_len, dtype=np.dtype(float)).reshape(B_len)
     for B_pos in range(B_len):
         degenerada_list = []
         for A_pos in range(A_len):
