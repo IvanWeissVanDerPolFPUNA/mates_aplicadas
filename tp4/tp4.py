@@ -15,7 +15,6 @@ A = {"1": 0.1, "2": 0.4, "3": 1}
 B = {"a": 0.3, "b": 1}
 '''
 
-np.set_printoptions(precision=3)
 
 def Ejercico1(A_set, B_set):
 
@@ -59,7 +58,7 @@ def Ejercico1(A_set, B_set):
     print('R(x,y) = ', end='')
     for A_key, A_pos in zip(A_set, range(A_len)):
         for B_key, B_pos in zip(B_set, range(B_len)):
-            buffer = buffer + f'{round(GODEL_mat[A_pos][B_pos])}/({A_key},{B_key}) + '
+            buffer = buffer +  f'{round(GODEL_mat[A_pos][B_pos])}/({A_key},{B_key}) + '
     print(buffer.rstrip('+ '))
     print("\nEn forma matricial:")
     print(GODEL_mat)
@@ -245,6 +244,7 @@ def max_op_degenerada(A_set, B_set, mat, arr):
 ########################
 
 def main():
+    np.set_printoptions(formatter={'float': lambda x: (f'{int(x)}' if round(x, 5) % 1 == 0 else f'{round(x,3)}').center(5, ' ')})
     GODEL_mat, LUKASIEWICZ_mat, GOGUEN_mat = Ejercico1(A, B)
     Ejercicio2(A, B, GODEL_mat, LUKASIEWICZ_mat, GOGUEN_mat)
 
