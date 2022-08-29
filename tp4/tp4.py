@@ -144,25 +144,25 @@ def Ejercicio2(A, B, GODEL_mat, LUKASIEWICZ_mat, GOGUEN_mat):
 
     buffer = ''
     print('Resultados del ejercicio 2\n')
-    print('T-Norm: interseccion drastica\n')
+    print('T-Norm: Diferencia limitada (Lukasiewicz)\n')
     print('R(x,y) obtenido con Godel: ', end='')
     print("B'(y) = ", end='')
     for B_key, B_pos in zip(B, range(len(B))):
-        buffer = buffer + f'{R_GODEL_mat[B_pos]}/{B_key} + '
+        buffer = buffer + f'{round(R_GODEL_mat[B_pos],3)}/{B_key} + '
     print(buffer.rstrip('+ '))
 
     buffer = ''
     print('R(x,y) obtenido con Lukasiwewicz: ', end='')
     print("B'(y) = ", end='')
     for B_key, B_pos in zip(B, range(len(B))):
-        buffer = buffer + f'{R_LUKASIEWICZ_mat[B_pos]}/{B_key} + '
+        buffer = buffer + f'{round(R_LUKASIEWICZ_mat[B_pos],3)}/{B_key} + '
     print(buffer.rstrip('+ '))
 
     buffer = ''
     print('R(x,y) obtenido con Goguen: ', end='')
     print("B'(y) = ", end='')
     for B_key, B_pos in zip(B, range(len(B))):
-        buffer = buffer + f'{R_GOGUEN_mat[B_pos]}/{B_key} + '
+        buffer = buffer + f'{round(R_GOGUEN_mat[B_pos],3)}/{B_key} + '
     print(buffer.rstrip('+ '), '\n')
 
     R_GODEL_mat = max_op_degenerada(A, B, GODEL_mat, A_P_mat)
@@ -170,7 +170,7 @@ def Ejercicio2(A, B, GODEL_mat, LUKASIEWICZ_mat, GOGUEN_mat):
     R_GOGUEN_mat = max_op_degenerada(A, B, GOGUEN_mat, A_P_mat)
 
     buffer = ''
-    print('T-Norm: Diferencia limitada (Lukasiewicz)\n')
+    print('T-Norm: interseccion drastica\n')
     print('R(x,y) obtenido con Godel: ', end='')
     print("B'(y) = ", end='')
     for B_key, B_pos in zip(B, range(len(B))):

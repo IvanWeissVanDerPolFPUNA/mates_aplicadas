@@ -48,13 +48,13 @@ A(x) = 0.5/1 + 0.7/2 + 0.9/3 + 0.5/4 + 0.4/5
 
 Resultados del ejercicio 2
 
-T-Norm: interseccion drastica
-
-R(x,y) obtenido con Godel: B'(y) = 1.0/a + 1.0/b + 1.0/c + 0.9/d
-R(x,y) obtenido con Lukasiwewicz: B'(y) = 1.0/a + 1.0/b + 1.0/c + 0.9/d
-R(x,y) obtenido con Goguen: B'(y) = 1.0/a + 1.0/b + 1.0/c + 0.9/d 
-
 T-Norm: Diferencia limitada (Lukasiewicz)
+
+R(x,y) obtenido con Godel: B'(y) = 0.5/a + 0.7/b + 0.7/c + 0.9/d
+R(x,y) obtenido con Lukasiwewicz: B'(y) = 0.5/a + 0.7/b + 0.7/c + 0.9/d
+R(x,y) obtenido con Goguen: B'(y) = 0.5/a + 0.7/b + 0.7/c + 0.9/d 
+
+T-Norm: interseccion drastica
 
 R(x,y) obtenido con Godel: B'(y) = 0.5/a + 0.7/b + 0.7/c + 0.9/d
 R(x,y) obtenido con Lukasiwewicz: B'(y) = 0.5/a + 0.7/b + 0.7/c + 0.9/d
