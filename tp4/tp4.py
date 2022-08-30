@@ -1,3 +1,5 @@
+# Hecho por Jose Gutierrez e Ivan Weiss
+
 import numpy as np
 
 
