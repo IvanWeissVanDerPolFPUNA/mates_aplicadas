@@ -1,4 +1,4 @@
-# Hecho por Jose Gutierrez e Ivan Weiss
+# Hecho por Jose Gutierrez e Ivan Weiss para el TP4 de la materia Matematica Aplicada
 
 import numpy as np
 
